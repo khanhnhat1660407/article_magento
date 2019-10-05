@@ -1,0 +1,18 @@
+<?php
+
+    $article =  $block->getArticleSelected();
+    if($article!= null)
+    {
+        echo '
+        <div class="container-fluid">
+            <div class="title" style="text-align: center; font-weight: bold;">
+                <h2 class="article_title">' . $article->getTitle() . '</h2>
+            </div>
+            <div class="content">
+                <p class="article_content">' . $article->getContent() . '</p>
+            </div>
+        <div>
+        ';
+    }
+
+
