@@ -4,44 +4,34 @@ namespace SmartOSC\Article\Block;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\App\Action\Context as ActionContext;
-use SmartOSC\Article\Model\ArticleFactory;
-use SmartOSC\Article\Model\ResourceModel\Article\CollectionFactory;
 use SmartOSC\Article\Helper\Config;
 use SmartOSC\Article\Api\ArticleRepositoryInterface ;
 
 class Detail extends Template
 {
-    protected $_actionContext;
-    protected $_articleFactory;
-    protected $_collectionFactory;
+
     protected $_configData;
     protected $_request;
     protected $_articleRepository;
-    protected $_objectManager;
     protected $_url;
+    protected $_actionContext;
+
     public function __construct(
         Context $context,
-        ArticleFactory $articleFactory,
-        CollectionFactory $collectionFactory,
         Config $configData,
         RequestInterface $request,
-        ObjectManagerInterface $objectManager,
         ArticleRepositoryInterface $articleRepository,
         UrlInterface $url,
         ActionContext $actionContext
     )
     {
-        $this->_actionContext = $actionContext;
-        $this->_articleFactory = $articleFactory;
-        $this->_collectionFactory = $collectionFactory;
         $this->_configData = $configData;
         $this->_request = $request;
-        $this->_objectManager = $objectManager;
         $this->_articleRepository = $articleRepository;
         $this->_url = $url;
+        $this->_actionContext = $actionContext;
         return parent::__construct($context);
     }
 
@@ -74,26 +64,15 @@ class Detail extends Template
         return $article;
     }
 
+    /**
+     * Redirect to Page not Found
+     */
     public function redirectToPageNotFound()
     {
         $norouteUrl = $this->_url->getUrl('noroute');
         $response = $this->_actionContext->getResponse();
         $response->setRedirect($norouteUrl);
     }
-
-    public function test()
-    {
-        $param = $this->getURLParam('id');
-        if($param === null || !$this->isInterger($param))
-        {
-            return 'n';
-        }
-        else
-        {
-            return 'oke';
-        }
-    }
-
 
     /**
      * @return mixed

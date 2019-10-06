@@ -6,7 +6,7 @@
  */
 namespace SmartOSC\Article\Api\Data;
 
-use \Magento\Framework\Api\SearchResultsInterface;
+use Magento\Framework\Api\SearchResultsInterface;
 /**
  * @api
  * @since 100.0.2

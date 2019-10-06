@@ -12,7 +12,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
         $installer->startSetup();
 
-        if(version_compare($context->getVersion(), '1.1.0', '<')) {
+        if(version_compare($context->getVersion(), '1.3.0', '<')) {
             if (!$installer->tableExists('sm_article')) {
                 $table = $installer->getConnection()->newTable(
                     $installer->getTable('sm_article')
@@ -45,7 +45,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     )
                     ->addColumn(
                         'image',
-                        Table::TYPE_BLOB,
+                        Table::TYPE_TEXT,
                         '1M',
                         [],
                         'Article image'

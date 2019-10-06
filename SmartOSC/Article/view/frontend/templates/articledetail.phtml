@@ -1,18 +1,64 @@
-<?php
 
-    $article =  $block->getArticleSelected();
-    if($article!= null)
-    {
-        echo '
-        <div class="container-fluid">
-            <div class="title" style="text-align: center; font-weight: bold;">
-                <h2 class="article_title">' . $article->getTitle() . '</h2>
-            </div>
-            <div class="content">
-                <p class="article_content">' . $article->getContent() . '</p>
+<?php
+/**
+ * @var SmartOSC\Article\Block\Detail $block
+ */
+$article =  $block->getArticleSelected();
+?>
+<style>
+    .column-left {
+        float: left;
+        width: 30%;
+        padding: 10px;
+        text-align: center;
+    }
+    .column-right {
+        float: left;
+        width: 60%;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .back_button{
+        margin: 10px 0px 10px 0px;
+    }
+
+    #article_image{
+        max-width: 250px;
+    }
+
+    #article_title{
+        font-weight: bold; !important;
+    }
+</style>
+
+<?php if($article!= null) { ?>
+    <div class="article">
+        <div class="back_button">
+        <button onclick="window.location.href='http://localhost/magento/article/index/display/'">Trở về danh sách</button>
+        </div>
+        <div class="article-main">
+            <div class="row">
+                <div class="column-left">
+                    <img id="article_image" src="http://localhost/magento/pub/media/<?= $article->getImage() ?>">
+                </div>
+                <div class="column-right">
+                    <div class="title">
+                        <h2 id="article_title"> <?= __($article->getTitle()) ?> </h2>
+                    </div>
+                    <div class="content">
+                        <p id="article_content"><?= __($article->getContent())?></p>
+                    </div>
+                </div>
             </div>
         <div>
-        ';
-    }
+    </div>
+
+<?php } ?>
 
 

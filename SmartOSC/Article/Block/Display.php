@@ -12,6 +12,7 @@ class Display extends Template
     protected $_articleFactory;
     protected $_collectionFactory;
     protected $_configData;
+
 	public function __construct(
 	    Context $context,
         ArticleFactory $articleFactory,
@@ -25,16 +26,6 @@ class Display extends Template
 		return parent::__construct($context);
 	}
 
-	public function displayArticle()
-	{
-        $config = $this->_configData->getGeneralConfig('limit_per_page');
-        $config2 = $this->_configData->getGeneralConfig('enable');
-		return __('
-        <div style="text-align: center;">
-            <h2>Articles</h2>
-        </div>
-        '.$config.$config2);
-	}
 
     public function getArticleCollection(){
         $article = $this->_articleFactory->create();

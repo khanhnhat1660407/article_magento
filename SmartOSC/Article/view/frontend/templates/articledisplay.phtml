@@ -1,31 +1,21 @@
 <?php
 /**
- * @var SmartOSC\Article\Block\Display $block
- */
-echo $block->displayArticle();
+* @var SmartOSC\Article\Block\Display $block
+*/
 ?>
-
 <style>
-.post-id{
-    width:2%
-}
-.post-name{
-    width:30%
-}
+
 .card {
-    /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     margin:10px;
     padding: 5px;
 }
 
-/* On mouse-over, add a deeper shadow */
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-/* Add some padding inside the card container */
 .container {
     padding: 2px 16px;
 }
@@ -33,26 +23,32 @@ echo $block->displayArticle();
     text-align: right;
 }
 
+.block-title{
+    text-align: center;
+}
+
+#block-title{
+    font-weight: bold;
+}
+
 </style>
-
-<div>
-    <?php
-        foreach ($block->getArticleCollection() as $key=>$article){
-            echo '<div class="card">
-                    <div class="container">    
-                        <div class="article_title">
-                            <a href="/">
-                                <h3>'.$article->getTitle().'</h3>                        
-                            </a>
-                        </div>
-                        <div class="detail_button">
-                            <button>Detail</button>
-                        </div>
-                    </div>
-                  </div>';
-        }
-    ?>
+<div class="block-title">
+    <h2 id="block-title"> Article List </h2>
 </div>
+<div class="list_article">
+    <?php foreach ($block->getArticleCollection() as $key=>$article){ ?>
+        <div class="card">
+            <div class="container">
+                <div class="article_title">
+                    <a href="/magento/article/detail/detail/?id=<?= $article->getId() ?>">
+                        <h3><?= __($article->getTitle()) ?></h3>
+                    </a>
+                </div>
+                <div class="detail_button">
+                    <button onclick="window.location.href='http://localhost/magento/article/detail/detail/?id=<?= $article->getId() ?>'" >Chi tiết</button>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 
-</body>
-</html>
+</div>

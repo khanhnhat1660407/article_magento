@@ -18,7 +18,7 @@
                     <comment>Enable to use it</comment>
                 </field>
                 <field id="limit_per_page" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Limit per page</label>
+                    <label>Limit per page (default)</label>
                     <source_model>SmartOSC\Article\Model\Config\Source\Limititem</source_model>
                     <comment>Number of items allow display per page</comment>
                 </field>

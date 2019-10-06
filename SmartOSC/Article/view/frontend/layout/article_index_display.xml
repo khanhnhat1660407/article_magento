@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-right" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Article List</title>
+    </head>
     <referenceContainer name="content">
-        <block class="SmartOSC\Article\Block\Display" name="article_display" template="SmartOSC_Article::articledisplay.phtml" />
+        <block class="SmartOSC\Article\Block\Display" ifconfig="Article_configuration/general/enable" name="article_display" template="SmartOSC_Article::articledisplay.phtml" />
     </referenceContainer>
+    <referenceBlock name="wishlist_sidebar" remove="true" ></referenceBlock>
+    <referenceBlock name="catalog.compare.sidebar" remove="true"></referenceBlock>
+    <referenceBlock name="page.main.title" remove="true" ></referenceBlock>
 </page>
