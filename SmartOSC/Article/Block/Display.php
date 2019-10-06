@@ -29,10 +29,10 @@ class Display extends Template
     protected function _prepareLayout()
     {
         parent::_prepareLayout();
-        $this->pageConfig->getTitle()->set(__('Article'));
+        $this->pageConfig->getTitle()->set(__('Article list'));
         if ($this->getArticleCollection()) {
             $pager = $this->getLayout()->createBlock(
-                'Magento\Theme\Block\Html\Pager',
+                'SmartOSC\Article\Block\Html\Pager',
                 'custom.history.pager'
             )->setAvailableLimit([5 => 5, 10 => 10, 15 => 15, 20 => 20])
                 ->setShowPerPage(true)->setCollection(
@@ -49,12 +49,19 @@ class Display extends Template
         return $this->getChildHtml('pager');
     }
 
+    /**
+     * @return int: limit per page has been configured in admin page
+     */
+    public function getDefaultLimitPerPageConfig()
+    {
+        $limitPerPage = intval($this->_configData->getGeneralCconfig('limit_per_page'));
+        return $limitPerPage;
+    }
+
     public function getArticleCollection(){
-
+        $defaulLimitPerPage = $this->getDefaultLimitPerPageConfig();
         $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
-        $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest(
-
-        )->getParam('limit') : 5;
+        $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : $defaulLimitPerPage;
         $article = $this->_articleFactory->create();
         $collection = $this->_collectionFactory->create();
         $collection->setPageSize($pageSize);

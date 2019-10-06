@@ -15,7 +15,7 @@ class Limititem implements ArrayInterface
      */
     public function toOptionArray()
     {
-        return [['value' => 10, 'label' => __('10')], ['value' => 15, 'label' => __('15')],['value' => 20, 'label' => __('20')],];
+        return [['value' => 5, 'label' => __('5')],['value' => 10, 'label' => __('10')], ['value' => 15, 'label' => __('15')],['value' => 20, 'label' => __('20')]];
     }
 
     /**
@@ -25,6 +25,6 @@ class Limititem implements ArrayInterface
      */
     public function toArray()
     {
-        return [10 => __('10'), 15 => __('15'), 20 => __('20')];
+        return [5 => __('5'),10 => __('10'), 15 => __('15'), 20 => __('20')];
     }
 }
