@@ -26,10 +26,39 @@ class Display extends Template
 		return parent::__construct($context);
 	}
 
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+        $this->pageConfig->getTitle()->set(__('Article'));
+        if ($this->getArticleCollection()) {
+            $pager = $this->getLayout()->createBlock(
+                'Magento\Theme\Block\Html\Pager',
+                'custom.history.pager'
+            )->setAvailableLimit([5 => 5, 10 => 10, 15 => 15, 20 => 20])
+                ->setShowPerPage(true)->setCollection(
+                    $this->getArticleCollection()
+                );
+            $this->setChild('pager', $pager);
+            $this->getArticleCollection()->load();
+        }
+        return $this;
+    }
+
+    public function getPagerHtml()
+    {
+        return $this->getChildHtml('pager');
+    }
 
     public function getArticleCollection(){
+
+        $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
+        $pageSize = ($this->getRequest()->getParam('limit')) ? $this->getRequest(
+
+        )->getParam('limit') : 5;
         $article = $this->_articleFactory->create();
         $collection = $this->_collectionFactory->create();
+        $collection->setPageSize($pageSize);
+        $collection->setCurPage($page);
         return $collection;
     }
 }

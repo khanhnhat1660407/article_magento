@@ -50,5 +50,8 @@
             </div>
         </div>
     <?php } ?>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+    <?php endif ?>
 
 </div>

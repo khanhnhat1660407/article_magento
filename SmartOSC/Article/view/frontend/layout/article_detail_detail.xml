@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <head>
-        <title>Detail</title>
-    </head>>
     <referenceContainer name="content">
         <block class="SmartOSC\Article\Block\Detail" ifconfig="Article_configuration/general/enable" name="article_detail" template="SmartOSC_Article::articledetail.phtml" />
     </referenceContainer>
@@ -10,5 +7,4 @@
     <referenceBlock name="wishlist_sidebar" remove="true" ></referenceBlock>
     <referenceBlock name="catalog.compare.sidebar" remove="true"></referenceBlock>
     <referenceBlock name="page.main.title" remove="true" ></referenceBlock>
-
 </page>
